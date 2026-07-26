@@ -1,0 +1,41 @@
+NAME        = push_swap
+
+
+# Arquivos Fontes do Push_Swap (Temos que ajustar os nomes conforme formos criando os arquivos .c)
+SRCS_FILES  = main.c \
+              parsing.c \
+              utils.c \
+              disorder.c \
+              operations/swap.c \
+              operations/push.c \
+              operations/rotate.c \
+              operations/rev_rotate.c \
+              strategies/simple.c \
+              strategies/medium.c \
+              strategies/complex.c \
+              strategies/adaptive.c
+
+
+```text
+├── Makefile
+├── libft/
+│   ├── Makefile
+│   └── ...
+├── includes/
+│   └── push_swap.h
+└── srcs/
+    ├── main.c
+    ├── parsing.c
+    ├── disorder.c
+    ├── utils.c
+    ├── operations/
+    │   ├── push.c
+    │   ├── rotate.c
+    │   └── ...
+    └── strategies/
+        ├── simple.c
+        ├── medium.c
+        ├── complex.c
+        └── adaptive.c
+
+```
