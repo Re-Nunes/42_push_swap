@@ -5,16 +5,15 @@
 # include <limits.h>
 # include <unistd.h>
 
-typedef struct s_node
-{
-	int				value;
-	struct s_node	*next;
-	struct s_node	*prev;
-}	t_node;
+# include "libft.h"
 
 typedef struct s_stack
 {
-	t_node	*head;
-	t_node	*tail;
+	t_list	*head;
 	int		size;
 }	t_stack;
+
+int		ft_stack_add_top(t_stack *stack, int nb);
+int		ft_stack_add_bottom(t_stack *stack, int nb);
+void	*ft_stack_clear(t_lst *node);
+
