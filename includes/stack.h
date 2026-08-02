@@ -13,7 +13,13 @@ typedef struct s_stack
 	int		size;
 }	t_stack;
 
+
 int		ft_stack_add_top(t_stack *stack, int nb);
 int		ft_stack_add_bottom(t_stack *stack, int nb);
-void	*ft_stack_clear(t_lst *node);
+void	ft_stack_clear(t_list *node);
 
+
+t_stack *ft_stack_new(void);
+int		ft_is_whitespace(char c);
+
+#endif

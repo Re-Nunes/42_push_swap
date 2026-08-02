@@ -6,22 +6,22 @@
 /*   By: renatanu <renatanu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 15:58:39 by renatanu          #+#    #+#             */
-/*   Updated: 2026/07/28 16:58:08 by renatanu         ###   ########.fr       */
+/*   Updated: 2026/08/01 19:34:40 by renatanu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-static my_atoi(char *arg)
+static int	ft_parse_atoi(char *arg)
 {
-	int nb;
-	int i;
-	int sign;
+	int	nb;
+	int	i;
+	int	sign;
 
 	nb = 0;
 	i = 0;
 	sign = 1;
-	while (arg[i] == ' ' || arg[i] == '\n' || arg[i] == '\r' || arg[i] == '\t' || arg[i] == '\v' || arg[i] == '\f')
+	while (is_whitespace(arg[i]))
 		i++;
 	if (arg[i] == '-' || arg[i] == '+')
 	{
@@ -34,33 +34,40 @@ static my_atoi(char *arg)
 	return (sign * nb);
 }
 
-static int isnumber(char *arg)
+static int	is_number(char *arg)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while (arg[i] == ' ' || arg[i] == '\n' || arg[i] == '\r' || arg[i] == '\t' || arg[i] == '\v' || arg[i] == '\f')
-		i++; 
+	while (is_whitespace(arg[i]))
+		i++;
 	if ((arg[i] == '-' || arg[i] == '+') && ft_isdigit(arg[i + 1]))
 		i++;
 	while (arg[i] && ft_isdigit(arg[i]))
 		i++;
-	if (arg[i] == '\0' || arg[i] == ' ' || arg[i] == '\n' || arg[i] == '\r' || arg[i] == '\t' || arg[i] == '\v' || arg[i] == '\f')
+	if (arg[i] == '\0' || is_whitespace(arg[i]))
 		return (1);
 	return (0);
 }
 
-int ft_parse_arguments(int argc, char *argv[], t_stack *stack_a)
+int	parse_arguments(int argc, char *argv[], t_stack *stack_a)
 {
-	int i;
-	int nb;
+	int	i;
+	int	nbr;
 
-	i = 0;
-	while (argv[i] && isnumber(argv[i]))
+	i = 1;
+	while (i < argc)
 	{
-		nb = my_atoi(argv[i]);
-		//verificar se o numero é repetido
-		//adicionar na stack 
+		//checak_flags
+		if (!is_number(argv[i]))
+			return (0);
+		nbr = parse_atoi(argv[i]);
+		i++;
 	}
+	return (1);
 }
 
+// int	check_if_duplicate(t_stack *a)
+// {
+	
+// }

@@ -6,7 +6,7 @@
 /*   By: renatanu <renatanu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 17:12:34 by renatanu          #+#    #+#             */
-/*   Updated: 2026/07/28 17:56:16 by renatanu         ###   ########.fr       */
+/*   Updated: 2026/08/01 18:28:08 by renatanu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 int	ft_stack_add_top(t_stack *stack, int nb)
 {
-	int *content;
-	t_list *link_node;
-	t_list *temp;
-	
+	int		*content;
+	t_list	*link_node;
+	t_list	*temp;
+
 	content = malloc(sizeof(*content));
 	if (content == NULL)
 		return (0);
@@ -35,12 +35,12 @@ int	ft_stack_add_top(t_stack *stack, int nb)
 	return (1);
 }
 
-ft_stack_add_bottom(t_stack *stack, int nb)
+int	ft_stack_add_bottom(t_stack *stack, int nb)
 {
-	int *content;
-	t_list *link_node;
-	t_list *temp;
-	
+	int		*content;
+	t_list	*link_node;
+	t_list	*temp;
+
 	content = malloc(sizeof(*content));
 	if (content == NULL)
 		return (0);
@@ -51,24 +51,30 @@ ft_stack_add_bottom(t_stack *stack, int nb)
 		free(content);
 		return (0);
 	}
-	
 }
 
-void	*ft_stack_clear(t_stack *stack)
+void	ft_stack_clear(t_stack *stack)
 {
-	
+	t_list	*node;
+
+	if (!stack)
+		return ;
+	if (stack->head)
+	{
+		ft_lstclear(&stack->head, free);
+	}
+	free(stack);
+	stack = NULL;
 }
 
-t_stack *ft_stacknew(void)
+t_stack	*ft_stack_new(void)
 {
+	t_stack	*stack;
 
-t_stack *stack;
-
-stack = malloc(sizeof(t_stack));
-if (!stack)
-	return (NULL);
-stack->head = NULL;
-stack->size = 0;
-return (stack);
-
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
+		return (NULL);
+	stack->head = NULL;
+	stack->size = 0;
+	return (stack);
 }
