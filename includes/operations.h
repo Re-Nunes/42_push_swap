@@ -3,6 +3,7 @@
 
 # include "libft/libft.h"
 # include "stack.h"
+# include "parsing.h"
 
 void	ft_sa(t_stack *a, t_config *config);
 void	ft_sb(t_stack *b, t_config *config);
