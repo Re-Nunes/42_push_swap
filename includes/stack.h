@@ -16,7 +16,7 @@ typedef struct s_stack
 
 int		ft_stack_add_top(t_stack *stack, int nb);
 int		ft_stack_add_bottom(t_stack *stack, int nb);
-void	ft_stack_clear(t_list *node);
+void	ft_stack_clear(t_stack *stack);
 
 
 t_stack *ft_stack_new(void);

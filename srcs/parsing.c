@@ -6,13 +6,14 @@
 /*   By: renatanu <renatanu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 15:58:39 by renatanu          #+#    #+#             */
-/*   Updated: 2026/08/01 19:34:40 by renatanu         ###   ########.fr       */
+/*   Updated: 2026/08/06 18:12:45 by renatanu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+#include "parsing.h"
 
-static int	ft_parse_atoi(char *arg)
+int	ft_parse_atoi(char *arg)
 {
 	int	nb;
 	int	i;
@@ -21,7 +22,7 @@ static int	ft_parse_atoi(char *arg)
 	nb = 0;
 	i = 0;
 	sign = 1;
-	while (is_whitespace(arg[i]))
+	while (ft_is_whitespace(arg[i]))
 		i++;
 	if (arg[i] == '-' || arg[i] == '+')
 	{
@@ -39,13 +40,13 @@ static int	is_number(char *arg)
 	int	i;
 
 	i = 0;
-	while (is_whitespace(arg[i]))
+	while (ft_is_whitespace(arg[i]))
 		i++;
 	if ((arg[i] == '-' || arg[i] == '+') && ft_isdigit(arg[i + 1]))
 		i++;
 	while (arg[i] && ft_isdigit(arg[i]))
 		i++;
-	if (arg[i] == '\0' || is_whitespace(arg[i]))
+	if (arg[i] == '\0' || ft_is_whitespace(arg[i]))
 		return (1);
 	return (0);
 }
@@ -58,10 +59,11 @@ int	parse_arguments(int argc, char *argv[], t_stack *stack_a)
 	i = 1;
 	while (i < argc)
 	{
-		//checak_flags
+		if(!parse_flags(argv[i]))
+			return(0);
 		if (!is_number(argv[i]))
 			return (0);
-		nbr = parse_atoi(argv[i]);
+		nbr = ft_parse_atoi(argv[i]);
 		i++;
 	}
 	return (1);

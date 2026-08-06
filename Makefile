@@ -1,7 +1,9 @@
 NAME	= push_swap
 
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra # -Werror
+LDFLAGS = -L./libft
+LDLIBS  = -lft
 
 LIBFT_DIR	= ./libft
 LIBFT		= $(LIBFT_DIR)/libft.a
@@ -12,16 +14,20 @@ OBJ_DIR	= objs
 
 INCLUDES	= -I $(INC_DIR) -I $(LIBFT_DIR)
 
-SRCS_FILES	= main.c\
+SRCS_FILES	= \
+	parsing_utils.c \
+	parsing.c \
+	stack_utils.c \
+	teste.c
 #aqui vem todos os arquivos .c que ainda vamos criar
 
 SRCS	= $(addprefix $(SRC_DIR)/, $(SRCS_FILES))
-objs	= $(addprefix $(OBJ_DIR)/, $(SRCS_FILES:.C=.O))
+OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS_FILES:.c=.o))
 
 all: $(LIBFT) $(NAME)
 
-$(NAME):$(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDLIBS) $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
