@@ -1,33 +1,45 @@
-NAME	= push_swap
+NAME    = push_swap
 
-CC		= cc
-CFLAGS	= -Wall -Wextra # -Werror
+CC      = cc
+CFLAGS  = -Wall -Wextra -Werror
 LDFLAGS = -L./libft
 LDLIBS  = -lft
 
-LIBFT_DIR	= ./libft
-LIBFT		= $(LIBFT_DIR)/libft.a
+LIBFT_DIR   = ./libft
+LIBFT       = $(LIBFT_DIR)/libft.a
 
-INC_DIR	= includes
-SRC_DIR	= srcs
-OBJ_DIR	= objs
+INC_DIR = includes
+SRC_DIR = srcs
+OBJ_DIR = objs
 
-INCLUDES	= -I $(INC_DIR) -I $(LIBFT_DIR)
+INCLUDES    = -I $(INC_DIR) -I $(LIBFT_DIR)
 
-SRCS_FILES	= \
-	parsing_utils.c \
-	parsing.c \
-	stack_utils.c \
-	teste.c
-#aqui vem todos os arquivos .c que ainda vamos criar
+# Lista completa de todos os arquivos fonte do projeto organizados por pastas
+# Lista completa de todos os arquivos fonte do projeto
+SRCS_FILES  = \
+    main.c \
+    parsing/parsing.c \
+    parsing/parsing_utils.c \
+    parsing/stack_utils.c \
+    parsing/error.c \
+    algorithms/compute_disorder.c \
+    algorithms/strategy.c \
+    algorithms/index.c \
+    algorithms/bubble_sort.c \
+    algorithms/bucket_sort.c \
+    algorithms/radix_sort.c \
+    operations/push.c \
+    operations/swap.c \
+    operations/rotate.c \
+    operations/reverse_rotate.c
 
-SRCS	= $(addprefix $(SRC_DIR)/, $(SRCS_FILES))
-OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS_FILES:.c=.o))
+SRCS    = $(addprefix $(SRC_DIR)/, $(SRCS_FILES))
+OBJS    = $(addprefix $(OBJ_DIR)/, $(SRCS_FILES:.c=.o))
 
 all: $(LIBFT) $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDLIBS) $(LDFLAGS)
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS) $(LDLIBS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
@@ -46,4 +58,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean 
+.PHONY: all clean fclean re
